@@ -5,8 +5,8 @@ import '../styles/app_styles.dart';
 class BigCircle extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final isRight;
-
-  const BigCircle({super.key,required this.isRight});
+  final bool?isColor;
+  const BigCircle({super.key,required this.isRight, this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BigCircle extends StatelessWidget {
       width: 10,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppStyles.secColor,
+          color: isColor==null? AppStyles.secColor:Colors.grey.shade200,
           borderRadius:isRight== true?
            BorderRadius.only(
             topLeft: Radius.circular(10),

@@ -3,26 +3,37 @@ import 'package:ticket_app/core/styles/app_styles.dart';
 import 'package:ticket_app/core/widgets/app_layoutbuilder.dart';
 import 'package:ticket_app/core/widgets/big_circle.dart';
 import 'package:ticket_app/core/widgets/big_dot.dart';
+import 'package:ticket_app/core/widgets/ticket_red_layout.dart';
+import 'package:ticket_app/core/widgets/ticket_text.dart';
 
 class Ticketview extends StatelessWidget {
-  const Ticketview({super.key});
+  final Map<String, dynamic> ticket;
+  final bool wholeScreen;
+  final bool? isColor;
+  const Ticketview({
+    super.key,
+    required this.ticket,
+    this.wholeScreen = false,
+    this.isColor,
+  });
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
       width: size.width * 0.85,
-      height: 189,
+      height: 180,
       // entire ticket
       child: Container(
-       margin: EdgeInsets.only(right: (16)),
+        margin: EdgeInsets.only(right: wholeScreen == true ? 0 : 16),
         child: Column(
           children: [
             // blue part of ticket
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppStyles.ticketBlue,
+                color:
+                    isColor == null ? AppStyles.ticketBlue : AppStyles.secColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(21),
                   topRight: Radius.circular(21),
@@ -33,14 +44,12 @@ class Ticketview extends StatelessWidget {
                   // show departure and destination in initials
                   Row(
                     children: [
-                      Text(
-                        "NYC",
-                        style: AppStyles.headline3.copyWith(
-                          color: AppStyles.secColor,
-                        ),
+                      TicketInitials(
+                        initials: ticket["from"]["code"],
+                        isColor: isColor,
                       ),
                       Expanded(child: Container()),
-                      BigDot(),
+                      BigDot(isColor: isColor),
                       Expanded(
                         child: Stack(
                           children: [
@@ -53,47 +62,48 @@ class Ticketview extends StatelessWidget {
                                 angle: 1.5,
                                 child: Icon(
                                   Icons.local_airport_rounded,
-                                  color: AppStyles.secColor,
+                                  color:
+                                      isColor == null
+                                          ? AppStyles.secColor
+                                          : AppStyles.plane2,
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      BigDot(),
+                      BigDot(isColor: isColor),
                       Expanded(child: Container()),
-                      Text(
-                        "LDN",
-                        style: AppStyles.headline3.copyWith(
-                          color: AppStyles.secColor,
-                        ),
+                      TicketInitials(
+                        initials: ticket["to"]["code"],
+                        align: TextAlign.end,
+                        isColor: isColor,
                       ),
                     ],
                   ),
-                  SizedBox(height: 3,), 
-                  // show departure and destination in words 
+                  SizedBox(height: 3),
+                  // show departure and destination in words
                   Row(
                     children: [
                       SizedBox(
                         width: 100,
-                        child: Text(
-                          "New York",
-                          style: AppStyles.headline4.copyWith(
-                            color: AppStyles.secColor,
-                          ),
+                        child: TicketFullname(
+                          fullname: ticket["from"]["name"],
+                          isColor: isColor,
                         ),
                       ),
                       Expanded(child: Container()),
-                      Text("8H 30M",style:AppStyles.headline4.copyWith(color: AppStyles.secColor),),
+                      TicketFullname(
+                        fullname: ticket["flying_time"],
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
                       SizedBox(
                         width: 100,
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          "London",
-                          style: AppStyles.headline4 .copyWith(
-                            color: AppStyles.secColor,
-                          ),
+                        child: TicketFullname(
+                          fullname: ticket["to"]["name"],
+                          align: TextAlign.end,
+                          isColor: isColor,
                         ),
                       ),
                     ],
@@ -101,85 +111,51 @@ class Ticketview extends StatelessWidget {
                 ],
               ),
             ),
-          // middle part of ticket
-          Container(
-            color: AppStyles.ticketRed,
-            child: Row(
-              children: [
-                BigCircle(isRight: false,),
-                Expanded(child: AppLayoutbuilderWidget(randomDivider: 10,),),
-                BigCircle(isRight: true,),
-              ],
+            // middle part of ticket
+            Container(
+              color: isColor==null? AppStyles.ticketRed:AppStyles.secColor,
+              child: Row(
+                children: [
+                  BigCircle(isRight: false,isColor: isColor,),
+                  Expanded(child: AppLayoutbuilderWidget(randomDivider: 10,isColor: isColor,)),
+                  BigCircle(isRight: true,isColor: isColor,),
+                ],
+              ),
             ),
-            
-          ),
-          // red part of ticket
-          Container(
+            // red part of ticket
+            Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppStyles.ticketRed,
+                color:
+                    isColor == null ? AppStyles.ticketRed : AppStyles.secColor,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(21),
-                  bottomRight: Radius.circular(21),
+                  bottomLeft: Radius.circular(isColor==null?21:0),
+                  bottomRight: Radius.circular(isColor==null?21:0),
                 ),
               ),
               child: Column(
                 children: [
-                  // show departure and destination in initials
+                  // Date, time, Number symbols
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          "1 MAY",
-                          style: AppStyles.headline3.copyWith(
-                            color: AppStyles.secColor,
-                          ),
-                        ),
+                      TicketRedLayout(
+                        topText: ticket["date"],
+                        bottomText: "Date",
+                        alignment: CrossAxisAlignment.start,
+                        isColor: isColor,
                       ),
-                      Expanded(child: Container()),
-                      Text(
-                        "O8:00 AM",
-                      style: AppStyles.headline3.copyWith(
-                          color: AppStyles.secColor),),
-                      Expanded(child: Container()),
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          "23",
-                          style: AppStyles.headline3.copyWith(
-                            color: AppStyles.secColor,
-                          ),
-                        ),
+                      TicketRedLayout(
+                        topText: ticket["departure_time"],
+                        bottomText: "Departure Time",
+                        alignment: CrossAxisAlignment.center,
+                        isColor: isColor,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 3,),  
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          "Date",
-                          style: AppStyles.headline4.copyWith(
-                            color: AppStyles.secColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                      Text("Departure Time",style:AppStyles.headline4.copyWith(
-                        color: AppStyles.secColor) ,),
-                      Expanded(child: Container()),
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          "Number",
-                          style: AppStyles.headline4.copyWith(
-                            color: AppStyles.secColor,
-                          ),
-                        ),
+                      TicketRedLayout(
+                        topText: ticket["number"].toString(),
+                        bottomText: "Number",
+                        alignment: CrossAxisAlignment.end,
+                        isColor: isColor,
                       ),
                     ],
                   ),

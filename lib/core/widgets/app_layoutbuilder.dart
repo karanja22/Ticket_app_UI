@@ -3,8 +3,9 @@ import 'package:ticket_app/core/styles/app_styles.dart';
 
 class AppLayoutbuilderWidget extends StatelessWidget {
   final int randomDivider;
+  final bool? isColor;
   // final double width; 
-  const AppLayoutbuilderWidget({super.key, required this.randomDivider});
+  const AppLayoutbuilderWidget({super.key, required this.randomDivider, this.isColor});
 // this.width = 3
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class AppLayoutbuilderWidget extends StatelessWidget {
                 height: 1,
                 width: 3,
                 child: DecoratedBox(decoration: BoxDecoration(
-                  color: AppStyles.secColor,
+                  color: isColor==null?AppStyles.secColor:Colors.grey.shade300,
                 ),),
               ),),);
     },);

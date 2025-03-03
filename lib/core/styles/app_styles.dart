@@ -9,6 +9,14 @@ class AppStyles {
   static Color ticketBlue = Color(0xFF526799);
   static Color ticketRed = Color(0xFFF37867);
   static Color secColor = Colors.white;
+  static Color kakiColor = Color(0xFFd2bdb6);
+  static Color tabColor = Color(0xFFF4F6FD);
+  static Color planeIcon = Color(0xFFBFC20F);
+  static Color findTicket = Color(0xD91130CE);
+  static Color sbox1 = Color(0xFF3AB8B8);
+  static Color sbox2 = Color(0xFFEC6545);
+  static Color dotColor = Color(0xFF8ACCF7);
+  static Color plane2 = Color(0xFFBACCF7);
     static TextStyle textStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -31,5 +39,6 @@ class AppStyles {
   static TextStyle headline4 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
+    color: Colors.grey.shade500
   );
 }
