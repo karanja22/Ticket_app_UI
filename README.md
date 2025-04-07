@@ -79,5 +79,5 @@ Ticket_app_UI/
 ## Contact Information
 For any questions or feedback, please reach out to:
 
-- **Email**: your-email@example.com  
+- **Email**: frasiahnyambura22@gmail.com  
 - **GitHub**: [karanja22](https://github.com/karanja22)
