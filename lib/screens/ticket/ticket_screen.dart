@@ -26,7 +26,6 @@ void didChangeDependencies() {
   if (args != null && args is Map) {
     ticketIndex = args["index"] as int;
   } else {
-    print("Error: Arguments not provided or invalid.");
     ticketIndex = 0; // Default value
   }
 }
@@ -148,7 +147,7 @@ void didChangeDependencies() {
                 ),
               
               SizedBox(height: 20),
-                Container(
+              Container(
                 padding: EdgeInsets.only(left: 16),
                 child: Ticketview(ticket: ticketList[ticketIndex],),
               ),

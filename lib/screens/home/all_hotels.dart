@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ticket_app/core/styles/app_styles.dart';
 import 'package:ticket_app/core/utils/app_routes.dart';
 import 'package:ticket_app/core/utils/at_json.dart';
-import 'package:ticket_app/screens/home/hotel_detail.dart';
 
 class AllHotels extends StatelessWidget {
   const AllHotels({super.key});
@@ -51,7 +50,7 @@ class HotelGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Container(
       // width: size.width*0.6,
       height: 350,

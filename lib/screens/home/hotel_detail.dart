@@ -28,7 +28,7 @@ class HotelDetail extends StatelessWidget {
                       "Imagine stepping into a haven of minimalist luxury, a stark contrast to the bustling energy of Dubai. This open-space hotel embraces a sense of airy freedom, where sleek, polished concrete floors meet soaring, exposed ceilings. Natural light floods the expansive lobby, spilling through floor-to-ceiling windows that frame breathtaking panoramic views of the city's iconic skyline.",
                     ),
                     SizedBox(height: 20,),
-                    Text("More images", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),textAlign: TextAlign.left,)
+                    Text("More images", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),

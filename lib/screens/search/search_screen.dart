@@ -26,7 +26,9 @@ class SearchScreen extends StatelessWidget {
           SizedBox(height: 20,),
           AppTextIcon(text: 'Arrival', icon: Icons.flight_land_rounded, ),
           SizedBox(height: 25,),
-          FindTicket(),
+          InkWell(
+            onTap: () => Navigator.pushNamed(context, AppRoutes.allTickets),
+            child:FindTicket()),
           SizedBox(height: 40,),
           AppDoubleText(
                   bigText: 'Upcoming Flights',
