@@ -6,7 +6,6 @@ The Ticket App UI is a Flutter application designed to provide a user-friendly i
 ## Features
 - **Homepage**: 
   - Welcomes users with a greeting.
-  - Includes a search bar for quick access to ticket searches.
   - Displays horizontally scrollable sections featuring upcoming flights and hotels, with navigation options for more details.
 
 - **Search Page**: 
@@ -26,9 +25,6 @@ The Ticket App UI is a Flutter application designed to provide a user-friendly i
 ## Technologies Used
 - **Flutter**: The primary framework for building the UI, enabling cross-platform development.
 - **Dart**: The programming language used for developing the application.
-- **C++**: Utilized for specific performance-critical components.
-- **Other Languages**: 
-  - Swift and C for platform-specific functionalities.
 
 ## Getting Started
 
